@@ -2,7 +2,7 @@ import api from "./api"
 
 export const register = async (userData) => {
   try {
-    const response = await api.post("/auth/register", userData)
+    const response = await api.post("/api/auth/register", userData)
 
     // Store token in localStorage for session management
     if (response.token) {
@@ -17,7 +17,7 @@ export const register = async (userData) => {
 
 export const login = async (credentials) => {
   try {
-    const response = await api.post("/auth/login", credentials)
+    const response = await api.post("/api/auth/login", credentials)
 
     // Store token in localStorage for session management
     if (response.token) {
@@ -33,7 +33,7 @@ export const login = async (credentials) => {
 export const getCurrentUser = async () => {
   try {
     // This will fetch user data from database via the /auth/me endpoint
-    const response = await api.get("/auth/me")
+    const response = await api.get("/api/auth/me")
     return response
   } catch (error) {
     // If token is invalid, remove it from localStorage
@@ -46,7 +46,7 @@ export const getCurrentUser = async () => {
 
 export const updatePreferences = async (preferences) => {
   try {
-    const response = await api.put("/auth/preferences", preferences)
+    const response = await api.put("/api/auth/preferences", preferences)
     return response
   } catch (error) {
     throw error
@@ -56,7 +56,7 @@ export const updatePreferences = async (preferences) => {
 export const logout = async () => {
   try {
     // Call logout endpoint (optional - for future token blacklisting)
-    await api.post("/auth/logout")
+    await api.post("/api/auth/logout")
   } catch (error) {
     // Even if logout endpoint fails, we should still clear local storage
     console.warn("Logout endpoint failed:", error.message)
@@ -68,7 +68,7 @@ export const logout = async () => {
 
 export const deactivateAccount = async () => {
   try {
-    const response = await api.delete("/auth/deactivate")
+    const response = await api.delete("/api/auth/deactivate")
     // Remove token after account deactivation
     localStorage.removeItem("token")
     return response
