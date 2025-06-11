@@ -17,6 +17,7 @@ export const register = async (userData) => {
 
 export const login = async (credentials) => {
   try {
+    // Note the `/api/auth/login` below
     const response = await api.post("/api/auth/login", credentials)
 
     // Store token in localStorage for session management
