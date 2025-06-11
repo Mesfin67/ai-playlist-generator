@@ -41,7 +41,7 @@ const Register = ({ onRegister }) => {
     } else if (formData.username.length > 30) {
       errors.username = "Username cannot exceed 30 characters"
     } else if (!/^[a-zA-Z0-9_]+$/.test(formData.username)) {
-      errors.username = "Username can only contain letters, numbers, and underscores"
+      errors.username = "Username can only contain letters, numbers and underscores"
     }
 
     // Password validation
