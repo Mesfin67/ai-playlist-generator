@@ -68,7 +68,7 @@ const validateLogin = async (req, res, next) => {
     const user = await User.findByUsername(username.trim())
     if (user && user.isLocked) {
       return res.status(423).json({
-        message: "Account is temporarily locked due to too many failed login attempts. Please try again later.",
+        message: "Account temporarily locked",
         code: "ACCOUNT_LOCKED",
       })
     }

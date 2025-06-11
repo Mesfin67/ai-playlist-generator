@@ -124,7 +124,7 @@ const getUserPlaylists = async (req, res) => {
     })
   } catch (error) {
     console.error("Get user playlists error:", error)
-    res.status(500).json({ message: "Failed to fetch playlists" })
+    res.status(500).json({ message: "Failed to fetch " })
   }
 }
 
@@ -175,7 +175,7 @@ const updatePlaylist = async (req, res) => {
     })
   } catch (error) {
     console.error("Update playlist error:", error)
-    res.status(500).json({ message: "Failed to update playlist" })
+    res.status(500).json({ message: "Failed to update" })
   }
 }
 
@@ -192,10 +192,10 @@ const deletePlaylist = async (req, res) => {
 
   
 
-    res.json({ message: "Playlist deleted successfully" })
+    res.json({ message: "Playlist deleted" })
   } catch (error) {
     console.error("Delete playlist error:", error)
-    res.status(500).json({ message: "Failed to delete playlist" })
+    res.status(500).json({ message: "Failed to delete" })
   }
 }
 
