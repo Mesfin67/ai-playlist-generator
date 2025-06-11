@@ -79,7 +79,6 @@ const Login = ({ onLogin }) => {
                     disabled={loading}
                     minLength={8}
                   />
-                  {/* <Form.Text className="text-muted">(Password minimum 8 chars)</Form.Text> */}
                 </Form.Group>
 
                 <Button type="submit" variant="primary" size="lg" className="w-100 mb-3" disabled={loading}>
@@ -98,7 +97,7 @@ const Login = ({ onLogin }) => {
                 <p className="text-muted mb-0">
                   Don't have an account?{" "}
                   <Link to="/register" className="text-decoration-none">
-                     Sign UP
+                    Sign UP
                   </Link>
                 </p>
               </div>
