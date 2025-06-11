@@ -32,7 +32,6 @@ export const login = async (credentials) => {
 
 export const getCurrentUser = async () => {
   try {
-    // This will fetch user data from database via the /auth/me endpoint
     const response = await api.get("/api/auth/me")
     return response
   } catch (error) {
@@ -55,13 +54,10 @@ export const updatePreferences = async (preferences) => {
 
 export const logout = async () => {
   try {
-    // Call logout endpoint (optional - for future token blacklisting)
     await api.post("/api/auth/logout")
   } catch (error) {
-    // Even if logout endpoint fails, we should still clear local storage
     console.warn("Logout endpoint failed:", error.message)
   } finally {
-    // Always remove token from localStorage
     localStorage.removeItem("token")
   }
 }
@@ -69,7 +65,6 @@ export const logout = async () => {
 export const deactivateAccount = async () => {
   try {
     const response = await api.delete("/api/auth/deactivate")
-    // Remove token after account deactivation
     localStorage.removeItem("token")
     return response
   } catch (error) {
