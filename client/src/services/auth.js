@@ -33,6 +33,10 @@ export const login = async (credentials) => {
 
 export const getCurrentUser = async () => {
   try {
+<<<<<<< HEAD
+=======
+    // This will fetch user data from database via the /auth/me endpoint
+>>>>>>> 4e3861b (Update playlist generator)
     const response = await api.get("/api/auth/me")
     return response
   } catch (error) {
@@ -55,6 +59,10 @@ export const updatePreferences = async (preferences) => {
 
 export const logout = async () => {
   try {
+<<<<<<< HEAD
+=======
+    // Call logout endpoint (optional - for future token blacklisting)
+>>>>>>> 4e3861b (Update playlist generator)
     await api.post("/api/auth/logout")
   } catch (error) {
     console.warn("Logout endpoint failed:", error.message)
@@ -66,6 +74,10 @@ export const logout = async () => {
 export const deactivateAccount = async () => {
   try {
     const response = await api.delete("/api/auth/deactivate")
+<<<<<<< HEAD
+=======
+    // Remove token after account deactivation
+>>>>>>> 4e3861b (Update playlist generator)
     localStorage.removeItem("token")
     return response
   } catch (error) {

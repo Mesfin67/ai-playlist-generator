@@ -126,8 +126,7 @@ userSchema.methods.toJSON = function () {
   delete userObject.password
   delete userObject.loginAttempts
   delete userObject.lockUntil
-  // delete userObject.spotifyAccessToken;
-  // delete userObject.spotifyRefreshToken;
+
   return userObject
 }
 
