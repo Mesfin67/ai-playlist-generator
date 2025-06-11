@@ -2,10 +2,10 @@
 
 import { useState } from "react"
 import { Container, Row, Col, Card, Form, Button, Alert } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { register } from "../../services/auth"
 
-const Register = ({ onRegister }) => {
+const Register = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -14,6 +14,7 @@ const Register = ({ onRegister }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [validationErrors, setValidationErrors] = useState({})
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     setFormData({
@@ -73,11 +74,12 @@ const Register = ({ onRegister }) => {
     setError("")
 
     try {
-      const response = await register({
+      await register({
         username: formData.username,
         password: formData.password,
       })
-      onRegister(response)
+      // Redirect user to the login page after registration
+      navigate("/login")
     } catch (error) {
       setError(error.message || "Registration failed...try again.")
     } finally {
@@ -114,8 +116,9 @@ const Register = ({ onRegister }) => {
                     disabled={loading}
                     isInvalid={!!validationErrors.username}
                   />
-                  <Form.Control.Feedback type="invalid">{validationErrors.username}</Form.Control.Feedback>
-                  {/* <Form.Text className="text-muted">3-30 characters, letters, numbers, and underscores only</Form.Text> */}
+                  <Form.Control.Feedback type="invalid">
+                    {validationErrors.username}
+                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-3 text-white">
@@ -131,8 +134,10 @@ const Register = ({ onRegister }) => {
                     minLength={8}
                     isInvalid={!!validationErrors.password}
                   />
-                  <Form.Control.Feedback type="invalid">{validationErrors.password}</Form.Control.Feedback>
-                  <Form.Text className="text-muted">(minimum 8 characters) </Form.Text>
+                  <Form.Control.Feedback type="invalid">
+                    {validationErrors.password}
+                  </Form.Control.Feedback>
+                  <Form.Text className="text-muted">(minimum 8 characters)</Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-4 text-white">
@@ -147,7 +152,9 @@ const Register = ({ onRegister }) => {
                     disabled={loading}
                     isInvalid={!!validationErrors.confirmPassword}
                   />
-                  <Form.Control.Feedback type="invalid">{validationErrors.confirmPassword}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">
+                    {validationErrors.confirmPassword}
+                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Button type="submit" variant="primary" size="lg" className="w-100 mb-3" disabled={loading}>
