@@ -2,9 +2,10 @@ import api from "./api";
 
 export const register = async (userData) => {
   try {
-    const response = await api.post("/api/auth/register", userData);
+    // Using endpoint relative to API_BASE_URL: /auth/register
+    const response = await api.post("/auth/register", userData);
 
-    // Store token in localStorage for session management
+    // Store token in localStorage for session management (if returned)
     if (response.token) {
       localStorage.setItem("token", response.token);
     }
@@ -17,10 +18,10 @@ export const register = async (userData) => {
 
 export const login = async (credentials) => {
   try {
-    // Ensure correct API endpoint
-    const response = await api.post("/api/auth/login", credentials);
+    // Using endpoint: /auth/login
+    const response = await api.post("/auth/login", credentials);
 
-    // Store token in localStorage for session management
+    // Store token in localStorage for session management (if returned)
     if (response.token) {
       localStorage.setItem("token", response.token);
     }
@@ -33,7 +34,7 @@ export const login = async (credentials) => {
 
 export const getCurrentUser = async () => {
   try {
-    const response = await api.get("/api/auth/me");
+    const response = await api.get("/auth/me");
     return response;
   } catch (error) {
     // If token is invalid, remove it from localStorage
@@ -46,7 +47,7 @@ export const getCurrentUser = async () => {
 
 export const updatePreferences = async (preferences) => {
   try {
-    const response = await api.put("/api/auth/preferences", preferences);
+    const response = await api.put("/auth/preferences", preferences);
     return response;
   } catch (error) {
     throw error;
@@ -55,7 +56,7 @@ export const updatePreferences = async (preferences) => {
 
 export const logout = async () => {
   try {
-    await api.post("/api/auth/logout");
+    await api.post("/auth/logout");
   } catch (error) {
     console.warn("Logout endpoint failed:", error.message);
   } finally {
@@ -65,7 +66,7 @@ export const logout = async () => {
 
 export const deactivateAccount = async () => {
   try {
-    const response = await api.delete("/api/auth/deactivate");
+    const response = await api.delete("/auth/deactivate");
     localStorage.removeItem("token");
     return response;
   } catch (error) {
